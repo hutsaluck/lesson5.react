@@ -1,0 +1,57 @@
+form{
+    display: grid;
+    grid-auto-flow: row;
+    gap: 20px;
+    width: 40%;
+    margin: 0 auto;
+}
+
+form input, form textarea, form select{
+    width: calc(100% - 20px);
+    padding: 20px 10px;
+}
+
+form select{
+    width: calc(100% - 5px);
+    padding: 20px 10px;
+}
+
+form input[type="submit"]{
+    width: fit-content;
+    padding: 20px 70px;
+    text-transform: uppercase;
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+form input[type="submit"]:disabled{
+    cursor: not-allowed;
+}
+
+form input, form textarea, form select, form select{
+    border: none;
+    outline: none;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 8px;
+}
+
+p.error-item{
+    color: tomato;
+}
+
+p{
+    margin-bottom: 10px;
+}
+
+p.success{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    font-family: 'Montserrat ExtraBold', sans-serif;
+    font-size: 30px;
+    line-height: 25px;
+    font-weight: 800;
+    color: #ffffff;
+    text-shadow: #000 0 0 1px, #000 0 0 1px, #000 0 0 1px, #000 0 0 1px, #000 0 0 1px, #000 0 0 1px;
+}

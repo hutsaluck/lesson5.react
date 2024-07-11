@@ -1,25 +1,16 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import FormComponent from "./components/form-component/FormComponent";
+import PostsComponent from "./components/posts-component/PostsComponent";
 
-function App() {
+const App = () => {
+    const [trigger, setTrigger] = useState<boolean>(false)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+        <FormComponent setTrigger={setTrigger}/>
+        <PostsComponent trigger={trigger}/>
+      </div>
   );
 }
 
