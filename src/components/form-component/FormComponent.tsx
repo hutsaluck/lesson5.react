@@ -10,9 +10,10 @@ import {ISetState} from "../../types/resType";
 
 interface IProps {
     setTrigger: ISetState<boolean>
+    setNewPost: (newPost:IPost|null) => void
 }
 
-const FormComponent: FC<IProps> = ({setTrigger}) => {
+const FormComponent: FC<IProps> = ({setTrigger, setNewPost}) => {
 
     let {
         formState: {errors, isValid},
@@ -29,8 +30,9 @@ const FormComponent: FC<IProps> = ({setTrigger}) => {
     const [message, setMessage] = useState<boolean>(false)
     const save: SubmitHandler<IPost> = async (post: IPost) => {
         setMessage(true)
-        await postService.createPost(post)
+        const newPost:IPost = await postService.createPost(post)
         setTrigger(prevState => !prevState)
+        setNewPost(newPost)
         reset()
         setTimeout(() => {
             setMessage(false)

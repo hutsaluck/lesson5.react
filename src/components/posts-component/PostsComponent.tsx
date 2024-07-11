@@ -6,9 +6,10 @@ import {postService} from "../../services/api.service";
 
 interface IProps {
     trigger: boolean
+    newPost: IPost|null
 }
 
-const PostsComponent: FC<IProps> = ({trigger}) => {
+const PostsComponent: FC<IProps> = ({trigger, newPost}) => {
     const [posts, setPosts] = useState<IPost[]>([])
 
     useEffect(() => {
@@ -19,6 +20,7 @@ const PostsComponent: FC<IProps> = ({trigger}) => {
         <div>
             <h2>{posts.length ? `Posts` : ``}</h2>
             <div className="wrap-posts">
+                {newPost && <PostComponent key={newPost.id} post={newPost}/>}
                 {
                     posts.map(post => <PostComponent key={post.id} post={post}/>)
                 }
