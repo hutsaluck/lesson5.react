@@ -6,7 +6,6 @@ import './form-component.css'
 import {IPost} from "../../models/IPost";
 import {postService, userService} from "../../services/api.service";
 import {IUser} from "../../models/IUser";
-import {ISetState} from "../../types/resType";
 
 interface IProps {
     posts: IPost[]
