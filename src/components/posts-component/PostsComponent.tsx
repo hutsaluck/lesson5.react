@@ -6,21 +6,23 @@ import {postService} from "../../services/api.service";
 
 interface IProps {
     trigger: boolean
-    newPost: IPost|null
+    newPost: IPost | null
 }
 
 const PostsComponent: FC<IProps> = ({trigger, newPost}) => {
     const [posts, setPosts] = useState<IPost[]>([])
 
     useEffect(() => {
-        postService.getAllPosts().then((posts: IPost[]) => setPosts([...posts]));
+        postService.getAllPosts().then((posts: IPost[]) => {
+            const listPosts: IPost[] = newPost ? [newPost, ...posts] : [...posts]
+            setPosts([...listPosts])
+        });
     }, [trigger]);
 
     return (
         <div>
             <h2>{posts.length ? `Posts` : ``}</h2>
             <div className="wrap-posts">
-                {newPost && <PostComponent key={newPost.id} post={newPost}/>}
                 {
                     posts.map(post => <PostComponent key={post.id} post={post}/>)
                 }
