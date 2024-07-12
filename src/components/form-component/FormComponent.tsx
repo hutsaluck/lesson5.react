@@ -9,11 +9,11 @@ import {IUser} from "../../models/IUser";
 import {ISetState} from "../../types/resType";
 
 interface IProps {
-    setTrigger: ISetState<boolean>
-    setNewPost: (newPost:IPost|null) => void
+    posts: IPost[]
+    setPosts: (posts: IPost[]) => void
 }
 
-const FormComponent: FC<IProps> = ({setTrigger, setNewPost}) => {
+const FormComponent: FC<IProps> = ({posts, setPosts}) => {
 
     let {
         formState: {errors, isValid},
@@ -30,9 +30,10 @@ const FormComponent: FC<IProps> = ({setTrigger, setNewPost}) => {
     const [message, setMessage] = useState<boolean>(false)
     const save: SubmitHandler<IPost> = async (post: IPost) => {
         setMessage(true)
-        const newPost:IPost = await postService.createPost(post)
-        setTrigger(prevState => !prevState)
-        setNewPost(newPost)
+
+        const newPost: IPost = await postService.createPost(post)
+        setPosts([newPost, ...posts])
+
         reset()
         setTimeout(() => {
             setMessage(false)

@@ -1,23 +1,19 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect} from 'react';
 import {IPost} from "../../models/IPost";
 import './posts-component.css'
 import PostComponent from "../post-component/PostComponent";
 import {postService} from "../../services/api.service";
 
 interface IProps {
-    trigger: boolean
-    newPost: IPost | null
+    posts: IPost[]
+    setPosts: (posts: IPost[]) => void
 }
 
-const PostsComponent: FC<IProps> = ({trigger, newPost}) => {
-    const [posts, setPosts] = useState<IPost[]>([])
+const PostsComponent: FC<IProps> = ({posts, setPosts}) => {
 
     useEffect(() => {
-        postService.getAllPosts().then((posts: IPost[]) => {
-            const listPosts: IPost[] = newPost ? [newPost, ...posts] : [...posts]
-            setPosts([...listPosts])
-        });
-    }, [trigger]);
+        postService.getAllPosts().then((posts: IPost[]) => setPosts([...posts]));
+    }, []);
 
     return (
         <div>

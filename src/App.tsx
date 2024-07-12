@@ -5,13 +5,12 @@ import PostsComponent from "./components/posts-component/PostsComponent";
 import {IPost} from "./models/IPost";
 
 const App = () => {
-    const [trigger, setTrigger] = useState<boolean>(false)
-    const [newPost, setNewPost] = useState<IPost|null>(null)
+    const [posts, setPosts] = useState<IPost[]>([])
 
   return (
       <div>
-        <FormComponent setTrigger={setTrigger} setNewPost={setNewPost}/>
-        <PostsComponent trigger={trigger} newPost={newPost}/>
+        <FormComponent posts={posts} setPosts={setPosts}/>
+        <PostsComponent posts={posts} setPosts={setPosts}/>
       </div>
   );
 }
